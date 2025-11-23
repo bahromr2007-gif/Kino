@@ -6,7 +6,7 @@ from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
 # Bot tokenini environment variable dan olamiz
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8226993737:AAErIjCoq80NhvBsXr0nMbMMKWLBXSoaAD4")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8310166615:AAGc40Zdu4OS1mUtITAH0IlItKWb9tpYfpc")
 
 # Admin ID sini environment variable dan olamiz
 ADMIN_ID = int(os.getenv("ADMIN_ID", "7800649803"))
@@ -163,7 +163,6 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         # Videoni yuborish - CAPTION bilan
         try:
-            caption_text = f"🎉 Video #{found_video['video_number']} ochildi!"
             if found_video.get('caption'):
                 caption_text += f"\n\n{found_video['caption']}"
             
