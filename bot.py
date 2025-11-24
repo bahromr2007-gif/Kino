@@ -5,11 +5,11 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
-# Bot tokenini environment variable dan olamiz
+# Bot tokenini o'rnating
 BOT_TOKEN = "8310166615:AAGc40Zdu4OS1mUtITAH0IlItKWb9tpYfpc"
 
-# Admin ID sini environment variable dan olamiz
-ADMIN_ID = "7800649803"
+# Admin ID sini o'rnating (o'zingizning Telegram ID ingiz)
+ADMIN_ID = 7800649803
 
 # Ma'lumotlarni saqlash uchun
 DATA_FILE = "bot_data.json"
@@ -91,7 +91,7 @@ async def handle_video(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "file_unique_id": video_file.file_unique_id,
             "file_size": video_file.file_size,
             "timestamp": datetime.now().isoformat(),
-            "caption": caption
+            "caption": caption  # Caption ni ham saqlaymiz
         }
 
 # Kod qabul qilish va videoni saqlash
@@ -117,8 +117,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "code": user_input,
             "video_number": len(data["videos"]) + 1,
             "used_by": []
-
-}
+        }
         
         data["videos"].append(new_video)
         save_data(data)
@@ -164,6 +163,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         # Videoni yuborish - CAPTION bilan
         try:
+            caption_text = f"🎉 Video #{found_video['video_number']} ochildi!"
             if found_video.get('caption'):
                 caption_text += f"\n\n{found_video['caption']}"
             
@@ -259,8 +259,8 @@ def main():
     application.add_error_handler(error_handler)
 
     # Botni ishga tushirish
-    print("🚀 Bot Railwayda ishga tushdi! 24/7 ishlaydi.")
+    print("🚀 Bot ishga tushdi! Endi video tashlaganda tagiga yozuv yozishingiz mumkin.")
     application.run_polling()
 
-if name == "main":
+if __name__ == "__main__":
     main()
