@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-python-telegram-bot = "20.4"
+python-telegram-bot = "25.3"
 
 [requires]
 python_version = "3.11"
